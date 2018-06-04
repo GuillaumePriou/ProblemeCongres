@@ -22,6 +22,9 @@ class Solution
         Solution();
         virtual ~Solution();
 
+        short* getPlanning(void);
+        void setPlanning(short session, short nouvelleValeur);
+
         void evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS]);
         void verfierContrainteSalles(short planning[], short conflitParSession[]);
         void veriferContrainteIncompatibiliteSession(short planning[], short conflitParSession[], short incompatiblites[NB_SESSIONS][NB_SESSIONS]);

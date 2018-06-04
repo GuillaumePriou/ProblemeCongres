@@ -10,6 +10,16 @@ Solution::~Solution()
     //dtor
 }
 
+short* Solution::getPlanning(void)
+{
+    return this->m_planning;
+}
+
+void Solution::setPlanning(short session, short nouvelleValeur)
+{
+    this->m_planning[session] = nouvelleValeur;
+}
+
 void Solution::evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS])
 {
     verfierContrainteSalles(m_planning, m_conflitParSession);

@@ -41,6 +41,16 @@
 
 using namespace std;
 
+Solution initRandom(Solution sol)
+{
+    for (short item=0; item<NB_SESSIONS; item++)
+    {
+        sol.setPlanning(item, rand() % (NB_CRENEAUX - 1) +1);
+    }
+
+    return sol;
+}
+
 int main()
 {
     Solution meilleureSolutionActuelle;;
@@ -63,12 +73,4 @@ int main()
 
 }
 
-Solution initRandom(Solution sol)
-{
-    for (auto item : sol.planning)
-    {
-        item = rand() % (NB_CRENEAUX - 1) +1;
-    }
 
-    return sol;
-}
