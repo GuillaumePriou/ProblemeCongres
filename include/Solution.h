@@ -22,7 +22,7 @@ class Solution
         virtual ~Solution();
 
         void evaluerEfficacite();
-        void verfierContraiteSalles();
+        void verfierContrainteSalles();
         void veriferContrainteIncompatibiliteSession();
         void verifierContraintePrecedence();
 
