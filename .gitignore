@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# IDE specific file
+*.layout
+*.depend 
+
 # Compiled Object files
 *.slo
 *.lo
