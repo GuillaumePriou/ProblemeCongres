@@ -20,6 +20,12 @@ void Solution::setPlanning(short session, short nouvelleValeur)
     this->m_planning[session] = nouvelleValeur;
 }
 
+void Solution::setPlanning(short tab[])
+{
+    for (short i=0; i<NB_SESSIONS; i++)
+        this->setPlanning(i, tab[i]);
+}
+
 void Solution::evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS])
 {
     verfierContrainteSalles(m_planning, m_conflitParSession);

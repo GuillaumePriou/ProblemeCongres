@@ -41,22 +41,14 @@
 
 using namespace std;
 
-Solution initRandom(Solution sol)
-{
-    for (short item=0; item<NB_SESSIONS; item++)
-    {
-        sol.setPlanning(item, rand() % (NB_CRENEAUX - 1) +1);
-    }
-
-    return sol;
-}
+Solution initRandom(Solution sol);
 
 int main()
 {
     Solution meilleureSolutionActuelle;;
     Solution nouvelleSolution;
     meilleureSolutionActuelle = initRandom(meilleureSolutionActuelle);
-    srand (time(NULL));
+    srand (time(nullptr));
 
     short incompatiblites[NB_SESSIONS][NB_SESSIONS] = {   {0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0 },
                                                           {1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1 },
@@ -74,3 +66,12 @@ int main()
 }
 
 
+Solution initRandom(Solution sol)
+{
+    for (short item=0; item<NB_SESSIONS; item++)
+    {
+        sol.setPlanning(item, rand() % (NB_CRENEAUX - 1) +1);
+    }
+
+    return sol;
+}
