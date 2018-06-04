@@ -2,7 +2,19 @@
 #define SOLUTION_H
 
 #define NB_SESSIONS 11
+#define NB_SALLES 4
 
+#define A 0
+#define B 1
+#define C 2
+#define D 3
+#define E 4
+#define F 5
+#define G 6
+#define H 7
+#define I 8
+#define J 9
+#define K 10
 class Solution
 {
     public:
