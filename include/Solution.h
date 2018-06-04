@@ -43,7 +43,7 @@ class Solution
             - probleme de precedance (prerequis d'un cours de niveau 1 pour assister au cours de niveau 2)
             - probleme de salle (seulement 3 salles donc autant de sessions prenant place simultanement)
         */
-        double m_efficacite;
+        short m_efficacite;
 
         /*
         */

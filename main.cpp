@@ -39,7 +39,7 @@
 #include <vector>
 #include "Solution.h"
 
-#define MAX_NB_ITERATION 500
+#define MAX_NB_ITERATION 30
 
 using namespace std;
 
@@ -87,7 +87,10 @@ int main()
 
         nouvelleSolution = meilleureSolutionActuelle;
 
-        //  Recherche de la session posant le plus de problemes
+        //  Recherche de la session posant le plus de problemes :
+        //      1. Quelle est la valeur de conflit la plus elevee ?
+        //      2. Quelles sont la/les sessions ayant un tel niveau de conflit ?
+        //      3. Selection aleatoire de l'une d'elles
         short sessionAChanger = determinerSessionAChanger (nouvelleSolution);
 
 
@@ -113,6 +116,11 @@ int main()
         {
             lastValMem = meilleureSolutionActuelle.m_efficacite;
             memProgression.push_back(lastValMem);
+
+            for (short item=0; item<NB_SESSIONS; item++)
+            {
+                cout << "progression : " << memProgression[item] << endl ;
+            }
         }
 
         nbIteration++ ;
@@ -214,4 +222,6 @@ short determinerSessionAChanger (Solution solAModif)
     short sessionAChanger = TabSessionsChiantes[BITE] ;
 
     cout << "Session a changer : " << sessionAChanger << endl;
+
+    return sessionAChanger;
 }
