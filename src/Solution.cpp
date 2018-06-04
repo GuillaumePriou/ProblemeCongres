@@ -14,14 +14,14 @@ void Solution::evaluerEfficacite()
 {
     //
 }
-void Solution::verfierContrainteSalles()
+
+short Solution::verfierContrainteSalles(Solution sol)
 {
-    /*
-    // Count each color utilization
-    short colorsCount[NB_COLORS] = {0,0,0,0} ;
+    // Compte l'utilisation de chaque creneau horaire
+    short colorsCount[NB_CRENEAUX] = {0,0,0,0} ;
 
     for (short i=0; i<NB_SESSIONS; i++)
-        colorsCount[solutionToEvaluate[i]]++;
+        colorsCount[sol.planning[i]]++;
 
     // Increase cost for each color being used to much (value added : the exceeding amount of use)
     short cost = 0 ;
@@ -31,7 +31,7 @@ void Solution::verfierContrainteSalles()
             cost += colorsCount[i] - 3 ;
 
     cout << "Cost color use : " << cost << endl ;
-    return cost ;*/
+    return cost ;
 
 }
 void Solution::veriferContrainteIncompatibiliteSession()

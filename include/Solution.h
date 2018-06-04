@@ -2,7 +2,8 @@
 #define SOLUTION_H
 
 #define NB_SESSIONS 11
-#define NB_SALLES 4
+#define NB_SALLES 3
+#define NB_CRENEAUX 4
 
 #define A 0
 #define B 1
@@ -22,7 +23,7 @@ class Solution
         virtual ~Solution();
 
         void evaluerEfficacite();
-        void verfierContrainteSalles();
+        short verfierContrainteSalles();
         void veriferContrainteIncompatibiliteSession();
         void verifierContraintePrecedence();
 
@@ -33,7 +34,7 @@ class Solution
             Tableau contenant le creneau horaire de chaque session
             valeur de chaque case : 1 à 4 (ième demi journée du congres de 2 jours
         */
-        short solution[NB_SESSIONS];
+        short planning[NB_SESSIONS];
 
         /*
             Indique les performances de la solution. A minimiser.
