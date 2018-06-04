@@ -22,9 +22,9 @@ class Solution
         Solution();
         virtual ~Solution();
 
-        void evaluerEfficacite();
+        void evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS]);
         void verfierContrainteSalles(short planning[], short conflitParSession[]);
-        void veriferContrainteIncompatibiliteSession(short planning[], short conflitParSession[]);
+        void veriferContrainteIncompatibiliteSession(short planning[], short conflitParSession[], short incompatiblites[NB_SESSIONS][NB_SESSIONS]);
         void verifierContraintePrecedence(short planning[], short conflitParSession[]);
 
     protected:
@@ -32,7 +32,7 @@ class Solution
     private:
         /*
             Tableau contenant le creneau horaire de chaque session
-            valeur de chaque case : 1 � 4 (i�me demi journ�e du congres de 2 jours
+            valeur de chaque case : 1 � 4 (ieme demi journee du congres de 2 jours
         */
         short planning[NB_SESSIONS];
 
