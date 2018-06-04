@@ -23,7 +23,7 @@ class Solution
         virtual ~Solution();
 
         void evaluerEfficacite();
-        short verfierContrainteSalles();
+        void Solution::verfierContrainteSalles(short plan[], short conflits[NB_SESSIONS]);
         void veriferContrainteIncompatibiliteSession();
         void verifierContraintePrecedence();
 
