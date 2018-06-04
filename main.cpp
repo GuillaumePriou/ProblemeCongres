@@ -37,6 +37,7 @@
 
 #include <iostream>
 #include "Solution.h"
+#include <time.h>
 
 using namespace std;
 
@@ -44,6 +45,8 @@ int main()
 {
     Solution meilleureSolutionActuelle;;
     Solution nouvelleSolution;
+    meilleureSolutionActuelle = initRandom(meilleureSolutionActuelle);
+    srand (time(NULL));
 
     short incompatiblites[NB_SESSIONS][NB_SESSIONS] = {   {0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0 },
                                                           {1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1 },
@@ -58,4 +61,14 @@ int main()
                                                           {0, 1, 0, 2, 1, 2, 0, 1, 0, 0, 0 }
                                                         };
 
+}
+
+Solution initRandom(Solution sol)
+{
+    for (auto item : sol.planning)
+    {
+        item = rand() % (NB_CRENEAUX - 1) +1;
+    }
+
+    return sol;
 }
