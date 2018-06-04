@@ -36,6 +36,7 @@ void Solution::resetCompteursEfficacite(void)
 
 void Solution::evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS])
 {
+    resetCompteursEfficacite();
     verfierContrainteSalles(m_planning, m_conflitParSession);
     veriferContrainteIncompatibiliteSession(m_planning, m_conflitParSession, incompatiblites);
     verifierContraintePrecedence(m_planning, m_conflitParSession);
