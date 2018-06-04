@@ -103,6 +103,8 @@ int main()
         nouvelleSolution.setPlanning(sessionAChanger, newVal);
         nouvelleSolution.evaluerEfficacite(incompatiblites);
 
+        printSolutions (meilleureSolutionActuelle, nouvelleSolution);
+
         // Si la nouvelle est meilleure, on la garde
         if (meilleureSolutionActuelle.m_efficacite > nouvelleSolution.m_efficacite)
         {
@@ -110,14 +112,13 @@ int main()
             meilleureSolutionActuelle.evaluerEfficacite(incompatiblites);
         }
 
-        printSolutions (meilleureSolutionActuelle, nouvelleSolution);
-
+        // Affichage d'un historique de progression (DEBUG)
         if (meilleureSolutionActuelle.m_efficacite != lastValMem)
         {
             lastValMem = meilleureSolutionActuelle.m_efficacite;
             memProgression.push_back(lastValMem);
 
-            for (short item=0; item<NB_SESSIONS; item++)
+            for (short item=0; item<memProgression.size(); item++)
             {
                 cout << "progression : " << memProgression[item] << endl ;
             }
@@ -125,12 +126,12 @@ int main()
 
         nbIteration++ ;
     }
-
-    for (short item=0; item<NB_SESSIONS; item++)
+/*
+    for (short item=0; item<item<memProgression.size(); item++)
     {
         cout << "progression : " << memProgression[item] << endl ;
     }
-
+*/
     /*
     Solution sol;
                            // A  B  C  D  E  F  G  H  I  J  K
@@ -206,7 +207,7 @@ short determinerSessionAChanger (Solution solAModif)
            TabSessionsChiantes.push_back(sessionAnalysee);
 
     }
-
+/*
     cout << "Contenu TabSessionsChiantes : " ;
     for (short i=0; i<TabSessionsChiantes.size(); i++)
         cout << TabSessionsChiantes[i] << " " ;
@@ -215,13 +216,13 @@ short determinerSessionAChanger (Solution solAModif)
     cout << " (" << TabSessionsChiantes.size() ;
 
     cout << "solutions aussi chiantes)" << endl;
-
+*/
     short BITE = rand() % TabSessionsChiantes.size();
 
-    cout << "BITE = " << BITE << "mais y a de la place que pour " << TabSessionsChiantes.size() << " elements !" << endl;
+    //cout << "BITE = " << BITE << "mais y a de la place que pour " << TabSessionsChiantes.size() << " elements !" << endl;
     short sessionAChanger = TabSessionsChiantes[BITE] ;
 
-    cout << "Session a changer : " << sessionAChanger << endl;
+    //cout << "Session a changer : " << sessionAChanger << endl;
 
     return sessionAChanger;
 }
