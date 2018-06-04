@@ -23,16 +23,16 @@ class Solution
         virtual ~Solution();
 
         void evaluerEfficacite();
-        short verfierContrainteSalles();
-        void veriferContrainteIncompatibiliteSession();
-        void verifierContraintePrecedence();
+        void verfierContrainteSalles(short planning[], short conflitParSession[]);
+        void veriferContrainteIncompatibiliteSession(short planning[], short conflitParSession[]);
+        void verifierContraintePrecedence(short planning[], short conflitParSession[]);
 
     protected:
 
     private:
         /*
             Tableau contenant le creneau horaire de chaque session
-            valeur de chaque case : 1 à 4 (ième demi journée du congres de 2 jours
+            valeur de chaque case : 1 ï¿½ 4 (iï¿½me demi journï¿½e du congres de 2 jours
         */
         short planning[NB_SESSIONS];
 
@@ -41,7 +41,7 @@ class Solution
             0 = La solution satisfait le probleme du congres
 
             La valeur augmente d'un point pour chaque session ayant un conflit :
-            - incompatibilité avec une autre session (même presentateur)
+            - incompatibilitï¿½ avec une autre session (mï¿½me presentateur)
             - probleme de precedance (prerequis d'un cours de niveau 1 pour assister au cours de niveau 2)
             - probleme de salle (seulement 3 salles donc autant de sessions prenant place simultanement)
         */
