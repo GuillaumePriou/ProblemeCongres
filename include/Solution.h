@@ -26,19 +26,13 @@ class Solution
         void setPlanning(short session, short nouvelleValeur);
         void setPlanning(short tab[]);
 
+        void resetCompteursEfficacite(void);
+
         void evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS]);
         void verfierContrainteSalles(short planning[], short conflitParSession[]);
         void veriferContrainteIncompatibiliteSession(short planning[], short conflitParSession[], short incompatiblites[NB_SESSIONS][NB_SESSIONS]);
         void verifierContraintePrecedence(short planning[], short conflitParSession[]);
 
-    protected:
-
-    private:
-        /*
-            Tableau contenant le creneau horaire de chaque session
-            valeur de chaque case : 1 a 4 (ieme demi journee du congres de 2 jours
-        */
-        short m_planning[NB_SESSIONS];
 
         /*
             Indique les performances de la solution. A minimiser.
@@ -54,6 +48,14 @@ class Solution
         /*
         */
         short m_conflitParSession[NB_SESSIONS];
+    protected:
+
+    private:
+        /*
+            Tableau contenant le creneau horaire de chaque session
+            valeur de chaque case : 1 a 4 (ieme demi journee du congres de 2 jours
+        */
+        short m_planning[NB_SESSIONS];
 };
 
 #endif // SOLUTION_H

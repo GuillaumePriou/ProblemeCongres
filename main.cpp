@@ -63,6 +63,26 @@ int main()
                                                           {0, 1, 0, 2, 1, 2, 0, 1, 0, 0, 0 }
                                                         };
 
+    /*Solution sol;
+
+    short tab1[NB_SESSIONS]= {1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3};
+    sol.setPlanning(tab1);
+
+    sol.resetCompteursEfficacite();
+    sol.verfierContrainteSalles(sol.getPlanning(), sol.m_conflitParSession);
+
+    cout << "Cout total : " << sol.m_efficacite << endl;
+
+    for (auto item : sol.getPlanning()){
+        cout << " "<< item ;
+    }
+    cout << "Conflit par session : " <<
+
+    sol.resetCompteursEfficacite();
+    sol.veriferContrainteIncompatibiliteSession(sol.getPlanning(), sol.m_conflitParSession, incompatiblites);
+
+    sol.resetCompteursEfficacite();
+    sol.verifierContraintePrecedence(sol.getPlanning(), sol.m_conflitParSession);*/
 }
 
 

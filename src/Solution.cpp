@@ -26,6 +26,14 @@ void Solution::setPlanning(short tab[])
         this->setPlanning(i, tab[i]);
 }
 
+void Solution::resetCompteursEfficacite(void)
+{
+    this->m_efficacite = 0 ;
+
+    for (short i=0; i<NB_SESSIONS; i++)
+        this->m_conflitParSession[i] = 0;
+}
+
 void Solution::evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS])
 {
     verfierContrainteSalles(m_planning, m_conflitParSession);
@@ -71,6 +79,7 @@ void Solution::veriferContrainteIncompatibiliteSession(short planning[], short c
                     conflitParSession[sessionAVerifier] ++;
 
 }
+
 void Solution::verifierContraintePrecedence(short planning[], short conflitParSession[])
 {
     // E must precede J
