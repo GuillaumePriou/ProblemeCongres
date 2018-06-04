@@ -12,10 +12,17 @@ Solution::~Solution()
 
 void Solution::evaluerEfficacite()
 {
-    //
+    verfierContrainteSalles(planning, conflitParSession);
+    veriferContrainteIncompatibiliteSession(planning, conflitParSession);
+    verifierContraintePrecedence(planning, conflitParSession);
+    for(auto item : conflitParSession)
+    {
+        efficacite+=item;
+    }
+
 }
 
-void Solution::verfierContrainteSalles(Solution sol)
+void Solution::verfierContrainteSalles(short planning[], short conflitParSession[])
 {
     // Compte l'utilisation de chaque creneau horaire
     short compteCreneaux[NB_CRENEAUX] = {0,0,0,0} ;
@@ -34,21 +41,21 @@ void Solution::verfierContrainteSalles(Solution sol)
                 if (sol.planning[sessionSelectionnee] == creneauSelectionne)
                     sol.conflitParSession[sessionSelectionnee] += compteCreneaux[creneauSelectionne] - 3;
 }
-void Solution::veriferContrainteIncompatibiliteSession(Solution sol)
+void Solution::veriferContrainteIncompatibiliteSession(short planning[], short conflitParSession[])
 {
     //pour chaque session
     for(short sessionAVerifier=0;sessionAVerifier<NB_SESSIONS;sessionAVerifier++)
-        //chercher les autres sessions prenant place au même creneau horaire
+        //chercher les autres sessions prenant place au mï¿½me creneau horaire
         for(short autreSession =0;autreSession<NB_SESSIONS;autreSession++)
-            //si c'est le même creneau
+            //si c'est le mï¿½me creneau
             if(sol.planning[sessionAVerifier]==sol.planning[autreSession])
-                //consultation de la matrice d'imcompatibilité
+                //consultation de la matrice d'imcompatibilitï¿½
                 if(matrice[autreSession][sessionAVerifier]==1)
                     //incrementation du coup la session
                     sol.conflitParSession[sessionAVerifier] ++;
 
 }
-void Solution::verifierContraintePrecedence()
+void Solution::verifierContraintePrecedence(short planning[], short conflitParSession[])
 {
     //
 }
