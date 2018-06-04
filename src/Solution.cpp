@@ -1,8 +1,8 @@
 #include "Solution.h"
 
-Solution::Solution()
+Solution::Solution():m_efficacite(0)
 {
-        this->efficacite = 0;
+        //efficacite = 0;
 }
 
 Solution::~Solution()
@@ -12,12 +12,12 @@ Solution::~Solution()
 
 void Solution::evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS])
 {
-    verfierContrainteSalles(planning, conflitParSession);
-    veriferContrainteIncompatibiliteSession(planning, conflitParSession, incompatiblites);
-    verifierContraintePrecedence(planning, conflitParSession);
-    for(auto item : conflitParSession)
+    verfierContrainteSalles(m_planning, m_conflitParSession);
+    veriferContrainteIncompatibiliteSession(m_planning, m_conflitParSession, incompatiblites);
+    verifierContraintePrecedence(m_planning, m_conflitParSession);
+    for(auto item : m_conflitParSession)
     {
-        efficacite+=item;
+        m_efficacite+=item;
     }
 
 }
@@ -45,11 +45,11 @@ void Solution::veriferContrainteIncompatibiliteSession(short planning[], short c
 {
     //pour chaque session
     for(short sessionAVerifier=0;sessionAVerifier<NB_SESSIONS;sessionAVerifier++)
-        //chercher les autres sessions prenant place au m�me creneau horaire
+        //chercher les autres sessions prenant place au meme creneau horaire
         for(short autreSession =0;autreSession<NB_SESSIONS;autreSession++)
             //si c'est le m�me creneau
             if(planning[sessionAVerifier]==planning[autreSession])
-                //consultation de la matrice d'imcompatibilit�
+                //consultation de la matrice d'imcompatibilite
                 if(incompatiblites[autreSession][sessionAVerifier]==1)
                     //incrementation du coup la session
                     conflitParSession[sessionAVerifier] ++;
@@ -57,5 +57,24 @@ void Solution::veriferContrainteIncompatibiliteSession(short planning[], short c
 }
 void Solution::verifierContraintePrecedence(short planning[], short conflitParSession[])
 {
-    //
+    // E must precede J
+    if (planning[E] >= planning[J])
+    {
+        conflitParSession[E]+=3 ;
+        conflitParSession[J]+=3 ;
+    }
+
+    // D must precede K
+    if (planning[D] >= planning[K])
+    {
+        conflitParSession[D]+=3 ;
+        conflitParSession[K]+=3 ;
+    }
+
+    // F must precede K
+    if (planning[F] >= planning[K])
+    {
+        conflitParSession[F]+=3 ;
+        conflitParSession[K]+=3 ;
+    }
 }
