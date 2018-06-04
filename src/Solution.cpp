@@ -40,9 +40,9 @@ void Solution::evaluerEfficacite(short incompatiblites[NB_SESSIONS][NB_SESSIONS]
     verfierContrainteSalles(m_planning, m_conflitParSession);
     veriferContrainteIncompatibiliteSession(m_planning, m_conflitParSession, incompatiblites);
     verifierContraintePrecedence(m_planning, m_conflitParSession);
-    for(auto item : m_conflitParSession)
+    for(short i=0; i<NB_SESSIONS; i++)
     {
-        m_efficacite+=item;
+        m_efficacite+=m_conflitParSession[i];
     }
 
 }
