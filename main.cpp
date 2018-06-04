@@ -4,11 +4,8 @@
         nbCreneaux = 4
 
         Start:
-            var meilleureSolutionActuelle = tab[11]
-            var nouvelleSolution = tab[11]
-
-            var efficaciteMeilleureSolutionActuelle = tab[11]
-            var efficaciteNouvelleSolution = tab[11]
+            var meilleureSolutionActuelle
+            var nouvelleSolution
 
             var incompatiblites = tab[11][11]
 
@@ -41,15 +38,12 @@
 
 using namespace std;
 
-Solution initRandom(Solution sol);
+Solution initRandom(Solution sol, short incompatiblites[NB_SESSIONS][NB_SESSIONS]);
 void printSolution (Solution sol);
 
 
 int main()
 {
-    Solution meilleureSolutionActuelle;;
-    Solution nouvelleSolution;
-    meilleureSolutionActuelle = initRandom(meilleureSolutionActuelle);
     srand (time(nullptr));
                                                         // A  B  C  D  E  F  G  H  I  J  K
     short incompatiblites[NB_SESSIONS][NB_SESSIONS] = {   {0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0 }, // A
@@ -64,6 +58,47 @@ int main()
                                                           {1, 0, 0, 1, 2, 1, 0, 0, 1, 0, 0 }, // J
                                                           {0, 1, 0, 2, 1, 2, 0, 1, 0, 0, 0 }  // K
                                                         };
+
+    Solution meilleureSolutionActuelle;;
+    Solution nouvelleSolution;
+
+    // Initialisation solution initiale
+    meilleureSolutionActuelle = initRandom(meilleureSolutionActuelle, incompatiblites);
+
+    printSolution (meilleureSolutionActuelle);
+
+    // Amelioration incrementale de la solution
+    while (meilleureSolutionActuelle.m_efficacite > 0)
+    {
+        short maximum = 0 ;
+        short indiceDuMaximum = 0;
+
+        nouvelleSolution = meilleureSolutionActuelle;
+
+        //  Recherche de la session posant le plus de problemes
+        for (short item =0; item<NB_SESSIONS; item++)
+        {
+            if (maximum < nouvelleSolution.m_conflitParSession[item]){
+               maximum = nouvelleSolution.m_conflitParSession[item];
+               indiceDuMaximum = item;
+            }
+
+        }
+
+        // Changement aleatoire du creneau de cette session
+        nouvelleSolution.setPlanning(indiceDuMaximum, rand()% (NB_CRENEAUX -1)+1);
+        nouvelleSolution.evaluerEfficacite(incompatiblites);
+
+        // Si la nouvelle est meilleure, on la garde
+        if (meilleureSolutionActuelle.m_efficacite > nouvelleSolution.m_efficacite)
+        {
+            meilleureSolutionActuelle = nouvelleSolution ;
+            meilleureSolutionActuelle.evaluerEfficacite(incompatiblites);
+        }
+
+        printSolution (meilleureSolutionActuelle);
+
+    }
 
     /*
     Solution sol;
@@ -90,12 +125,14 @@ int main()
 }
 
 
-Solution initRandom(Solution sol)
+Solution initRandom(Solution sol, short incompatiblites[NB_SESSIONS][NB_SESSIONS])
 {
     for (short item=0; item<NB_SESSIONS; item++)
     {
-        sol.setPlanning(item, rand() % (NB_CRENEAUX - 1) +1);
+        sol.setPlanning(item, rand() % (NB_CRENEAUX) +1);
     }
+
+    sol.evaluerEfficacite(incompatiblites);
 
     return sol;
 }
